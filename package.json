@@ -1,0 +1,31 @@
+{
+  "name": "webtask-tfa-monitor",
+  "version": "0.1.0",
+  "description": "Backendless security monitoring for your Two-Factor Authentication enabled services",
+  "main": "node.run.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "2fa",
+    "tfa",
+    "two-factor",
+    "security",
+    "monitoring",
+    "webtask.io"
+  ],
+  "author": "radekk",
+  "license": "MIT",
+  "engines": {
+    "node": "~5.5.0"
+  },
+  "dependencies": {
+    "async": "~1.0.0",
+    "kerberos": "~0.0.18",
+    "lodash": "~4.5.1",
+    "mongodb": "~2.0.48",
+    "request": "~2.69.0",
+    "slack-notify": "~0.1.6"
+  }
+}
