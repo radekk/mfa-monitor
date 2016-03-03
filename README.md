@@ -72,7 +72,7 @@ Get the ``url`` parameter from documentation (generated dynamically for every us
 curl -s https://webtask.it.auth0.com/api/tokens/issue \
 -H "Authorization: Bearer <webtask.io_token_here>" \
 -H "Content-Type: application/json" \
---data-binary '{"url":"https://raw.githubusercontent.com/radekk/webtask-tfa-monitor/master/notify/slack.js","ectx":{"SLACK_WEBHOOK_URL":"https://hooks.slack.com/services/...","SLACK_CHANNEL_NAME":"#alerts"}}'
+--data-binary '{"url":"https://raw.githubusercontent.com/radekk/webtask-tfa-monitor/master/notifiers/slack/webtask.js","ectx":{"SLACK_WEBHOOK_URL":"https://hooks.slack.com/services/...","SLACK_CHANNEL_NAME":"#alerts"}}'
 ```
 
 As a result, you get a **token**. Save it (``RTM_WEBTASK_TOKEN``).
