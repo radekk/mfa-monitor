@@ -1,6 +1,6 @@
 {
   "name": "webtask-tfa-monitor",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Backendless security monitoring for your Two-Factor Authentication enabled services",
   "main": "node.run.js",
   "private": true,
