@@ -1,18 +1,15 @@
 'use strict';
-// It's a webtask(.io)
 
 var util = require('util');
 
+/**
+ * @param {secret} SLACK_WEBHOOK_URL
+ * @param {secret} SLACK_CHANNEL_NAME
+ */
 module.exports = function(ctx, cb) {
-    var params = {};
+    var params = ctx.body;
 
-    try {
-        params = JSON.parse(decodeURIComponent(ctx.data.params));
-    } catch (e) {
-        return cb(e);
-    }
-
-    if (!ctx.data.SLACK_WEBHOOK_URL || !ctx.data.SLACK_CHANNEL_NAME) {
+    if (!ctx.secrets.SLACK_WEBHOOK_URL || !ctx.secrets.SLACK_CHANNEL_NAME) {
         return cb(new Error('"SLACK_WEBHOOK_URL" and "SLACK_CHANNEL_NAME" parameters required'));
     }
 
@@ -20,8 +17,8 @@ module.exports = function(ctx, cb) {
         return cb(new Error('"service" and "members" parameters required'));
     }
 
-    var SLACK_WEBHOOK_URL = ctx.data.SLACK_WEBHOOK_URL;
-    var SLACK_CHANNEL_NAME = ctx.data.SLACK_CHANNEL_NAME;
+    var SLACK_WEBHOOK_URL = ctx.secrets.SLACK_WEBHOOK_URL;
+    var SLACK_CHANNEL_NAME = ctx.secrets.SLACK_CHANNEL_NAME;
     var slack = require('slack-notify')(SLACK_WEBHOOK_URL);
     var service = params.service;
     var members = params.members.join(', ');

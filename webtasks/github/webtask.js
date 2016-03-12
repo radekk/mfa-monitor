@@ -1,5 +1,4 @@
 'use strict';
-// It's a webtask(.io)
 
 var GitHubApi = require('github');
 var github = new GitHubApi({
@@ -19,8 +18,8 @@ var github = new GitHubApi({
  * @return JSON [{username: ''}]
  */
 module.exports = function(cx, cb) {
-    var ORGANIZATION = cx.data.ORGANIZATION;
-    var GITHUB_TOKEN = cx.data.GITHUB_TOKEN;
+    var ORGANIZATION = cx.secrets.ORGANIZATION;
+    var GITHUB_TOKEN = cx.secrets.GITHUB_TOKEN;
 
     github.authenticate({
         type: 'token',

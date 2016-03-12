@@ -12,9 +12,11 @@ var webtasks    = [{
 ];
 
 function sendPostRequest(url, data, headers, cb) {
+    // Sending JSON type to webtask returns JSON object as a response
     request({
         method: 'POST',
-        url: url + '?params=' + encodeURIComponent(JSON.stringify(data)),
+        url: url,
+        json: data || {},
         headers: headers
     }, function(err, res, body) {
         cb(err, res, body);
@@ -71,6 +73,7 @@ function removeUsersWithEnabledTFA(collection, members, cb) {
 }
 
 function addUsersWithDisabledTFA(collection, members, cb) {
+    return cb();
     if (!collection || !members.length) return cb();
 
     var data = members.map(function(member) {
@@ -91,9 +94,11 @@ function detectTFAuthState(db, result, cb) {
 
     async.map(result, function(service, done) {
         var appname = service.service;
-        var members = JSON.parse(service.members);
+        var members = service.members;
 
         getAuditedUsers(db, appname, function(err, docs) {
+            if (!members || !members.length) return done();
+
             var serviceUsers = members.map(member => member.username.toLowerCase());
             var auditedUsers = docs.map(member => member.username.toLowerCase());
             var collection = db.collection(appname);
@@ -120,9 +125,9 @@ function detectTFAuthState(db, result, cb) {
  * @param {secret} RTM_WEBTASK_TOKEN - Real Time Messaging webtask token
  */
  function main(ctx, cb) {
-    var MONGO_URL = ctx.data.MONGO_URL;
-    var RTM_URL   = ctx.data.RTM_WEBTASK_URL;
-    var RTM_TOKEN = ctx.data.RTM_WEBTASK_TOKEN;
+    var MONGO_URL = ctx.secrets.MONGO_URL;
+    var RTM_URL   = ctx.secrets.RTM_WEBTASK_URL;
+    var RTM_TOKEN = ctx.secrets.RTM_WEBTASK_TOKEN;
     var dbHandler = null;
 
     async.waterfall([
