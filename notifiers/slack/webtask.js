@@ -23,7 +23,7 @@ module.exports = function(ctx, cb) {
     var service = params.service;
     var members = params.members.join(', ');
     var messages = {
-        tfa_disabled: util.format('Users without TFA on `%s` are %s', service, members)
+        tfa_disabled: util.format('The following users do not have MFA on `%s`: %s', service, members)
     };
 
     slack.send({
