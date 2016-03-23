@@ -1,16 +1,3 @@
-'use strict';
-
-var _           = require('lodash');
-var async       = require('async');
-var MongoClient = require('mongodb').MongoClient;
-var request     = require('request');
-var webtasks    = [{
-    name : 'GitHub',
-    url  : 'https://webtask.it.auth0.com/api/run/...',
-    token: '...'
-}
-];
-
 function sendPostRequest(url, data, headers, cb) {
     // Sending JSON type to webtask returns JSON object as a response
     request({
@@ -129,12 +116,13 @@ function detectTFAuthState(db, result, cb) {
     var RTM_URL   = ctx.secrets.RTM_WEBTASK_URL;
     var RTM_TOKEN = ctx.secrets.RTM_WEBTASK_TOKEN;
     var dbHandler = null;
+    var monitors  = ctx.body.monitors || [];
 
     async.waterfall([
         function dispatch(done) {
-            if (!webtasks || !webtasks.length) done(new Error('Missing webtasks'));
+            if (!monitors || !monitors.length) done(new Error('Monitors not defined'));
 
-            async.map(webtasks, dispatchWebtask, function(err, members) {
+            async.map(monitors, dispatchWebtask, function(err, members) {
                 if (err) return done(err);
 
                 done(null, members);
@@ -166,3 +154,4 @@ function detectTFAuthState(db, result, cb) {
 };
 
 module.exports = main;
+

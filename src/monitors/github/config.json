@@ -1,0 +1,11 @@
+[
+  {
+    "name": "ORGANIZATION",
+    "type": "input"
+  },
+  {
+    "name": "GITHUB_TOKEN",
+    "type": "input"
+  }
+]
+

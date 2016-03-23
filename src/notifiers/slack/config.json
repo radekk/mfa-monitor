@@ -1,0 +1,11 @@
+[
+  {
+    "name": "SLACK_CHANNEL_NAME",
+    "type": "input"
+  },
+  {
+    "name": "SLACK_WEBHOOK_URL",
+    "type": "input"
+  }
+]
+
