@@ -36,5 +36,8 @@
     "run-sequence": "~1.1.5",
     "slack-notify": "~0.1.6",
     "swig": "~1.4.2"
+  },
+  "devDependencies": {
+    "jshint": "^2.9.1"
   }
 }
