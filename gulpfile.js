@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * @TODO
  *
@@ -43,7 +45,7 @@ gulp.task('configure', function(done) {
   }
 
   function getWebtaskConfigParams(webtaskName, type, cb) {
-    var type = type || 'monitors';
+    type = type || 'monitors';
     var webtaskConfigFile = './src/' + type + '/' + webtaskName + '/config.json';
     var configBuildPath = './build/' + type + '/' + webtaskName;
     var config = getConfigFile(webtaskConfigFile);
@@ -71,30 +73,30 @@ gulp.task('configure', function(done) {
     {
       // @TODO implement and allow to select more than one notifier
       type: 'list',
-      name: 'webtask_notifier',
+      name: 'webtaskNotifier',
       message: 'Where do you want to send your alerts?',
       choices: notifiers
     },
     {
       type: 'checkbox',
-      name: 'webtask_monitors',
+      name: 'webtaskMonitors',
       message: 'Which services do you want to monitor?',
       choices: monitors
     }
   ];
 
   inquirer.prompt(questions, function(answers) {
-    if (!answers.webtask_notifier || !answers.webtask_monitors.length) return done();
+    if (!answers.webtaskNotifier || !answers.webtaskMonitors.length) return done();
 
     // @TODO allow to select multiple notifiers - requires a code rewrite
     async.eachSeries(
       [{
         type: 'notifiers',
-        webtasks: [answers.webtask_notifier]
+        webtasks: [answers.webtaskNotifier]
        },
        {
         type: 'monitors',
-        webtasks: answers.webtask_monitors
+        webtasks: answers.webtaskMonitors
        }
       ],
       function(data, cb) {
@@ -111,7 +113,7 @@ gulp.task('build', function(done) {
   runSequence('clean', 'setup-webtasks', 'templates', 'setup-cron', done);
 });
 
-gulp.task('setup-webtasks', function(done)) {
+gulp.task('setup-webtasks', function(done) {
   done();
 });
 
@@ -122,6 +124,7 @@ gulp.task('clean', function(done) {
 gulp.task('templates', function(done) {
   var swig = require('gulp-swig');
   var configFile = './build/config.json';
+  var buildDir = './build';
   var tplFile = './src/templates/scheduler.tpl';
   var opts = {
     ext: '.js'
