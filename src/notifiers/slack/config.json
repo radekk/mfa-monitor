@@ -1,11 +1,15 @@
-[
-  {
-    "name": "SLACK_CHANNEL_NAME",
-    "type": "input"
-  },
-  {
-    "name": "SLACK_WEBHOOK_URL",
-    "type": "input"
-  }
-]
-
+{
+  "claims": {},
+  "name": "Slack",
+  "prompt": [
+    {
+      "name": "SLACK_CHANNEL_NAME",
+      "type": "input"
+    },
+    {
+      "name": "SLACK_WEBHOOK_URL",
+      "type": "input"
+    }
+  ],
+  "type": "notifier"
+}
