@@ -1,11 +1,15 @@
 'use strict';
 
-const configPath = './build/config.json';
+const configPath = 'build/config.json';
 const fs = require('fs');
 const glob = require('glob');
 const prompt = require('Inquirer').prompt;
 const util = require('util');
 const _ = require('lodash');
+
+const validators = {
+  isNotEmpty: (value) => !!value ? true : 'Value is required!'
+};
 
 module.exports = {
   getWebtasks: () => _.flatten([
@@ -24,7 +28,8 @@ module.exports = {
     prompt(wt.prompt.map(params => ({
       type: params.type,
       name: params.name,
-      message: util.format('[%s | %s] %s:', wt.type, wt.name, params.name)
+      message: util.format('[%s | %s] %s:', wt.type, wt.name, params.name),
+      validate: validators.isNotEmpty
     })), resolve)
   ),
 
@@ -41,5 +46,7 @@ module.exports = {
       if (err) return reject(err);
       resolve();
     });
-  })
+  }),
+
+  validators: validators
 };

@@ -50,7 +50,6 @@ gulp.task('configure:webtasks', (cb) => {
       })
     ).then(() => {return Promise.resolve(config)})
   }).then(settings => {
-      helper.updateConfig('webtasks', settings);
-      cb();
+      helper.updateConfig('webtasks', settings).then(cb).catch(cb);
   }).catch(cb);
 });
