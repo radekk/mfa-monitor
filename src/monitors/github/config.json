@@ -9,6 +9,11 @@
     {
       "name": "GITHUB_TOKEN",
       "type": "input"
+    },
+    {
+      "name": "WEBTASK_URL",
+      "type": "input",
+      "default": "https://raw.githubusercontent.com/radekk/webtask-tfa-monitor/master/webtasks/github/webtask.js"
     }
   ],
   "type": "monitor"
