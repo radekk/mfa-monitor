@@ -44,7 +44,7 @@ gulp.task('configure:webtasks', (cb) => {
     return Promise.each(data, wt =>
       helper.promptWebtaskSettings(wt).then(input => {
         config.push({
-          webtask: wt,
+          metadata: wt,
           secrets: input
         });
       })

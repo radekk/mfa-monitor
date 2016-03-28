@@ -29,9 +29,12 @@ module.exports = {
       type: params.type,
       name: params.name,
       message: util.format('[%s | %s] %s:', wt.type, wt.name, params.name),
+      default: params.default || null,
       validate: validators.isNotEmpty
     })), resolve)
   ),
+
+  getConfig: () => require(configPath),
 
   updateConfig: (name, settings) => new Promise((resolve, reject) => {
     let config = {};
