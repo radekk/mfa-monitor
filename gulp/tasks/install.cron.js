@@ -2,13 +2,14 @@
 
 const assert = require('assert');
 const helper = require('gulp/helper');
-const config = helper.getConfig();
 const exec = require('child_process').exec;
 const gulp = require('gulp');
 const shellescape = require('shell-escape');
 const util = require('util');
 
 gulp.task('install:cron', cb => {
+  const config = helper.getConfig();
+
   assert(config.cron, 'Cron not configured: npm run configure:cron');
   assert(config.cron.name, 'Cron name not set!');
   assert(config.cron.schedule, 'Cron schedule not set!');

@@ -13,6 +13,16 @@ const validators = {
 };
 
 module.exports = {
+  isConfigured: () => {
+    try {
+      fs.accessSync(configPath, fs.R_OK | fs.W_OK);
+    } catch (e) {
+      return false;
+    }
+
+    return true;
+  },
+
   getWebtasks: () => _.flatten([
       'src/monitors/**/config.json',
       'src/notifiers/**/config.json'
