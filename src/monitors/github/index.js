@@ -1,45 +1,36 @@
 'use strict';
 
-var GitHubApi = require('github');
-var github = new GitHubApi({
-    version: '3.0.0',
-    debug: false,
-    protocol: 'https',
-    host: 'api.github.com',
-    timeout: 5000,
-    headers: {
-        'user-agent': 'webtask-tfa-monitor (https://github.com/radekk/webtask-tfa-monitor/)'
-    }
+const GitHubApi = require('github');
+const github = new GitHubApi({
+  version: '3.0.0',
+  debug: false,
+  protocol: 'https',
+  host: 'api.github.com',
+  timeout: 5000,
+  headers: {
+    'user-agent': 'webtask-mfa-monitor (https://github.com/radekk/webtask-mfa-monitor/)'
+  }
 });
 
 /**
  * @param {secret} ORGANIZATION - Github ORGANIZATION name
  * @param {secret} GITHUB_TOKEN - Github API Token with "org:read" permission
- * @return JSON [{username: ''}]
+ * @return JSON ['john', 'mark']
  */
-module.exports = function(cx, cb) {
-    var ORGANIZATION = cx.secrets.ORGANIZATION;
-    var GITHUB_TOKEN = cx.secrets.GITHUB_TOKEN;
+module.exports = (ctx, cb) => {
+  github.authenticate({
+    type: 'token',
+    token: ctx.secrets.GITHUB_TOKEN
+  });
 
-    github.authenticate({
-        type: 'token',
-        token: GITHUB_TOKEN
-    });
+  github.orgs.getMembers({
+    org: ctx.secrets.ORGANIZATION,
+    per_page: 100,
+    filter: '2fa_disabled'
+  }, (err, res) => {
+    if (err) return cb(err);
+    if (res && res.length) return cb(null, res.map(data => data.login));
 
-    // @TODO handle pagination
-    github.orgs.getMembers({
-        org: ORGANIZATION,
-        per_page: 100,
-        filter: '2fa_disabled'
-    }, function(err, res) {
-        if (err) return cb(err);
-
-        if (res && res.length) {
-            var members = res.map(data => data.login);
-
-            return cb(null, members);
-        }
-
-        return [];
-    });
+    return [];
+  });
 };
