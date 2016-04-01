@@ -27,6 +27,7 @@ gulp.task('build:webtasks', cb => {
         token: token
       }))
     );
-  }).then(() => helper.updateConfig('webtasks', webtasks))
-    .catch(cb);
+  }).then(() =>
+    helper.updateConfig('webtasks', webtasks).then(() => cb())
+   ).catch(cb);
 });
