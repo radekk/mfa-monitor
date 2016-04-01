@@ -1,0 +1,24 @@
+{
+  "claims": {
+    "pb": 1
+  },
+  "name": "Slack",
+  "prompt": [
+    {
+      "name": "SLACK_CHANNEL_NAME",
+      "type": "input",
+      "default": "#alerts"
+    },
+    {
+      "name": "SLACK_WEBHOOK_URL",
+      "type": "input"
+    },
+    {
+      "name": "WEBTASK_URL",
+      "type": "input",
+      "default": "https://raw.githubusercontent.com/radekk/webtask-mfa-monitor/master/src/notifiers/slack/index.js"
+    }
+
+  ],
+  "type": "notifier"
+}

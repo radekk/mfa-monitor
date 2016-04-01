@@ -1,0 +1,20 @@
+{
+  "claims": {},
+  "name": "GitHub",
+  "prompt": [
+    {
+      "name": "ORGANIZATION",
+      "type": "input"
+    },
+    {
+      "name": "GITHUB_TOKEN",
+      "type": "input"
+    },
+    {
+      "name": "WEBTASK_URL",
+      "type": "input",
+      "default": "https://raw.githubusercontent.com/radekk/webtask-mfa-monitor/master/src/monitors/github/index.js"
+    }
+  ],
+  "type": "monitor"
+}
