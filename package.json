@@ -1,6 +1,6 @@
 {
   "name": "webtask-mfa-monitor",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Backendless security monitoring for your MFA enabled services",
   "main": "node.run.js",
   "private": true,
@@ -17,6 +17,7 @@
     "install:cron": "NODE_PATH=. ./node_modules/.bin/gulp install:cron"
   },
   "keywords": [
+    "auth0",
     "2fa",
     "mfa",
     "two-factor",
@@ -30,29 +31,20 @@
     "node": "~5.5.0"
   },
   "dependencies": {
-    "async": "~1.0.0",
     "bluebird": "^3.3.4",
     "gulp": "~3.9.1",
-    "gulp-data": "~1.2.1",
-    "gulp-fail": "^1.0.1",
-    "gulp-if": "^2.0.0",
-    "gulp-swig": "~0.8.0",
     "inquirer": "^0.12.0",
     "json-loader": "^0.5.4",
-    "kerberos": "~0.0.18",
     "lodash": "~4.5.1",
-    "mkdirp": "^0.5.1",
-    "mongodb": "~2.0.48",
-    "request": "~2.69.0",
     "require-dir": "^0.3.0",
     "run-sequence": "~1.1.5",
     "sandboxjs": "^2.3.0",
     "shell-escape": "^0.2.0",
-    "slack-notify": "~0.1.6",
     "wt-cli": "^2.2.1"
   },
   "devDependencies": {
-    "gulp-mustache": "^2.2.0",
-    "jshint": "^2.9.1"
+    "github": "^0.2.4",
+    "jshint": "^2.9.1",
+    "slack-notify": "~0.1.6"
   }
 }
