@@ -7,7 +7,7 @@ const _ = require('lodash');
 const Promise = require('bluebird').Promise;
 const sandbox = require('sandboxjs');
 
-gulp.task('build:webtasks', (cb) => {
+gulp.task('build:webtasks', cb => {
   const config = helper.getConfig();
   assert(config.sandbox.token, 'Sandbox Token is required!');
   assert(config.webtasks.length, 'List of Webtasks is empty!');
@@ -15,18 +15,18 @@ gulp.task('build:webtasks', (cb) => {
   const profile = sandbox.fromToken(config.sandbox.token, config.sandbox);
   let webtasks = [];
 
-  Promise.each(config.webtasks, (wt) => {
+  Promise.each(config.webtasks, wt => {
     // Add config params but don't override if setting already exists
     let claims = _.defaults({
       url: wt.secrets.WEBTASK_URL,
       ectx: wt.secrets
     }, wt.metadata.claims);
 
-    return profile.createTokenRaw(claims).then(token => {
-      webtasks.push(_.defaults(wt, {
+    return profile.createTokenRaw(claims).then(token =>
+      webtasks.push(_.merge(wt, {
         token: token
       }))
-    }).then(Promise.resolve(webtasks));
-  }).then(config => helper.updateConfig('webtasks', config))
+    );
+  }).then(() => helper.updateConfig('webtasks', webtasks))
     .catch(cb);
 });

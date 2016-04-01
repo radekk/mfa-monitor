@@ -3,7 +3,7 @@
 const gulp = require('gulp');
 const helper = require('gulp/helper');
 
-gulp.task('configure:storage', (cb) => {
+gulp.task('configure:storage', cb => {
   const isNotEmpty = helper.validators.isNotEmpty;
   const questions = [
     {

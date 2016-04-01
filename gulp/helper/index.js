@@ -8,7 +8,7 @@ const util = require('util');
 const _ = require('lodash');
 
 const validators = {
-  isNotEmpty: (value) => !!value ? true : 'Value is required!'
+  isNotEmpty: value => !!value ? true : 'Value is required!'
 };
 
 module.exports = {
@@ -20,11 +20,11 @@ module.exports = {
     ))
   ),
 
-  prompt: (questions) => new Promise(resolve =>
+  prompt: questions => new Promise(resolve =>
     prompt(questions, resolve)
   ),
 
-  promptWebtaskSettings: (wt) => new Promise(resolve =>
+  promptWebtaskSettings: wt => new Promise(resolve =>
     prompt(wt.prompt.map(params => ({
       type: params.type,
       name: params.name,
@@ -45,7 +45,7 @@ module.exports = {
 
     config[name] = settings;
 
-    fs.writeFile(configPath, JSON.stringify(config), (err) => {
+    fs.writeFile(configPath, JSON.stringify(config), err => {
       if (err) return reject(err);
       resolve();
     });

@@ -2,6 +2,6 @@
 
 const gulp = require('gulp');
 
-gulp.task('default', (done) => {
-  done();
+gulp.task('default', cb => {
+  cb();
 });

@@ -7,10 +7,11 @@ const Promise = require('bluebird').Promise;
 const prompt = require('inquirer').prompt;
 const _ = require('lodash');
 
-gulp.task('configure:webtasks', (cb) => {
+gulp.task('configure:webtasks', cb => {
   const webtasks = helper.getWebtasks();
   assert(webtasks, 'List of available webtasks is empty');
 
+  let config = [];
   const monitors = webtasks.filter(wt => wt.type === 'monitor').map(wt => wt.name);
   const notifier = webtasks.filter(wt => wt.type === 'notifier').map(wt => wt.name);
   const questions = [
@@ -39,8 +40,6 @@ gulp.task('configure:webtasks', (cb) => {
 
     return Promise.resolve(_.flatten([notifier, monitors]));
   }).then(data => {
-    let config = [];
-
     return Promise.each(data, wt =>
       helper.promptWebtaskSettings(wt).then(input => {
         config.push({
@@ -48,8 +47,8 @@ gulp.task('configure:webtasks', (cb) => {
           secrets: input
         });
       })
-    ).then(() => {return Promise.resolve(config)})
-  }).then(settings => {
-      helper.updateConfig('webtasks', settings).then(cb).catch(cb);
+    )
+  }).then(() => {
+    helper.updateConfig('webtasks', config).then(cb).catch(cb);
   }).catch(cb);
 });

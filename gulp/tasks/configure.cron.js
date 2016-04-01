@@ -3,7 +3,7 @@
 const gulp = require('gulp');
 const helper = require('gulp/helper');
 
-gulp.task('configure:cron', (cb) => {
+gulp.task('configure:cron', cb => {
   const isNotEmpty = helper.validators.isNotEmpty;
   const questions = [
     {
