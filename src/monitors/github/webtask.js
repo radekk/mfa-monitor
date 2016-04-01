@@ -35,11 +35,7 @@ module.exports = function(cx, cb) {
         if (err) return cb(err);
 
         if (res && res.length) {
-            var members = res.map(function(data) {
-                return {
-                    username: data.login
-                };
-            });
+            var members = res.map(data => data.login);
 
             return cb(null, members);
         }
