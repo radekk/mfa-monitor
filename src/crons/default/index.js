@@ -1,18 +1,16 @@
-/**
- * 'config' variable is appended to this file by the Mustache engine.
- * As a result it generates ./build/cron.js file ready to ship as a webtask.
- *
- * @TODO https://github.com/auth0/wt-cli/issues/55
- */
+'use strict';
+
 const assert = require('assert');
-const sandbox = require('sandboxjs');
-const profile = sandbox.fromToken(config.sandbox.token, config.sandbox);
-const Promise = require('bluebird').Promise;
-const _ = require('lodash');
+const config = require('json!./../../../build/config.json');
 const db = require('src/storage/webtask');
+const Promise = require('bluebird').Promise;
+const sandbox = require('sandboxjs');
+const _ = require('lodash');
+let profile;
 
 function cron(ctx, cb) {
   db.init(ctx.storage);
+  profile = sandbox.fromToken(config.sandbox.token, config.sandbox);
 
   getMonitoringResult()
     .then(services => db.getStoredData()
