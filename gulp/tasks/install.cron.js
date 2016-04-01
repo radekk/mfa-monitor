@@ -16,7 +16,7 @@ gulp.task('install:cron', cb => {
   assert(config.cron.filepath, 'Cron filepath not set!');
 
   const cmd = shellescape([
-    'wt-cli', 'cron', 'schedule', '-b', '-n',
+    './node_modules/.bin/wt-cli', 'cron', 'schedule', '-b', '-n',
     config.cron.name, config.cron.schedule, config.cron.filepath
   ]);
 
