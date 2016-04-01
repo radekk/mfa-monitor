@@ -4,5 +4,5 @@ const gulp = require('gulp');
 const sequence = require('run-sequence');
 
 gulp.task('configure', cb => {
-  sequence('configure:sandbox', 'configure:storage', 'configure:webtasks','configure:cron', cb);
+  sequence('configure:sandbox', 'configure:webtasks','configure:cron', cb);
 });
