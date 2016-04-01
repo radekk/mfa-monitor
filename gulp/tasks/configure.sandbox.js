@@ -20,7 +20,7 @@ gulp.task('configure:sandbox', cb => {
       validate: isNotEmpty
     },
     {
-      type: 'input',
+      type: 'password',
       name: 'token',
       message: 'What is your token value?',
       validate: isNotEmpty
