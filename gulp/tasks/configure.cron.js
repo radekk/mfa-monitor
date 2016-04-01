@@ -10,7 +10,7 @@ gulp.task('configure:cron', cb => {
       type: 'input',
       name: 'name',
       message: 'Set name for your cron task:',
-      default: 'scheduler',
+      default: 'mfa-monitor',
       validate: isNotEmpty
     },
     {
