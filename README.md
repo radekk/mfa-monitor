@@ -64,4 +64,4 @@ This project leverages the quality of [webtask.io](https://webtask.io) platform 
 
 ## License
 
-MIT.
+This project is licensed under the MIT license. See the [LICENSE](LICENSE) file for more info.
