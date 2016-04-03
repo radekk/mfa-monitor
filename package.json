@@ -5,7 +5,7 @@
   "main": "node.run.js",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "NODE_PATH=. mocha",
     "start": "NODE_PATH=. ./node_modules/.bin/gulp start",
     "build": "NODE_PATH=. ./node_modules/.bin/gulp build",
     "build:webtasks": "NODE_PATH=. ./node_modules/.bin/gulp build:webtasks",
@@ -43,8 +43,10 @@
     "wt-cli": "^2.2.1"
   },
   "devDependencies": {
+    "expect.js": "^0.3.1",
     "github": "^0.2.4",
     "jshint": "^2.9.1",
+    "mocha": "^2.4.5",
     "slack-notify": "~0.1.6"
   }
 }
