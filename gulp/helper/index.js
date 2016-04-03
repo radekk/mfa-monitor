@@ -3,7 +3,7 @@
 const configPath = 'build/config.json';
 const fs = require('fs');
 const glob = require('glob');
-const prompt = require('Inquirer').prompt;
+const prompt = require('inquirer').prompt;
 const Promise = require('bluebird').Promise;
 const _ = require('lodash');
 
