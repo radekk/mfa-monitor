@@ -1,16 +1,7 @@
 'use strict';
 
-const GitHubApi = require('github');
-const github = new GitHubApi({
-  version: '3.0.0',
-  debug: false,
-  protocol: 'https',
-  host: 'api.github.com',
-  timeout: 5000,
-  headers: {
-    'user-agent': 'webtask-mfa-monitor (https://github.com/radekk/webtask-mfa-monitor/)'
-  }
-});
+const assert = require('assert');
+const github = require('github');
 
 /**
  * @param {secret} ORGANIZATION - Github ORGANIZATION name
@@ -18,19 +9,34 @@ const github = new GitHubApi({
  * @return JSON ['john', 'mark']
  */
 module.exports = (ctx, cb) => {
-  github.authenticate({
+  assert(ctx.secrets, 'Secrets not set!');
+  assert(ctx.secrets.GITHUB_TOKEN, 'GITHUB_TOKEN not set!');
+  assert(ctx.secrets.ORGANIZATION, 'ORGANIZATION not set!');
+
+  const client = new github({
+    version: '3.0.0',
+    debug: false,
+    protocol: 'https',
+    host: 'api.github.com',
+    timeout: 5000,
+    headers: {
+      'user-agent': 'webtask-mfa-monitor (https://github.com/radekk/webtask-mfa-monitor/)'
+    }
+  });
+
+  client.authenticate({
     type: 'token',
     token: ctx.secrets.GITHUB_TOKEN
   });
 
-  github.orgs.getMembers({
+  client.orgs.getMembers({
     org: ctx.secrets.ORGANIZATION,
     per_page: 100,
     filter: '2fa_disabled'
   }, (err, res) => {
     if (err) return cb(err);
-    if (res && res.length) return cb(null, res.map(data => data.login));
+    if (!res) return cb(new Error('Empty response received from Github API!'));
 
-    return [];
+    cb(null, res.map(data => data.login));
   });
 };
