@@ -45,10 +45,13 @@
     "wt-cli": "^2.2.1"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-spies": "^0.7.1",
     "expect.js": "^0.3.1",
     "github": "^0.2.4",
     "jshint": "^2.9.1",
     "mocha": "^2.4.5",
+    "proxyquire": "^1.7.4",
     "slack-notify": "~0.1.6"
   }
 }

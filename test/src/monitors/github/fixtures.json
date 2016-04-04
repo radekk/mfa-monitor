@@ -1,0 +1,50 @@
+{
+  "valid_accounts": [
+    {
+      "login": "octocat",
+      "id": 1,
+      "avatar_url": "https://github.com/images/error/octocat_happy.gif",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/octocat",
+      "html_url": "https://github.com/octocat",
+      "followers_url": "https://api.github.com/users/octocat/followers",
+      "following_url": "https://api.github.com/users/octocat/following{/other_user}",
+      "gists_url": "https://api.github.com/users/octocat/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/octocat/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/octocat/subscriptions",
+      "organizations_url": "https://api.github.com/users/octocat/orgs",
+      "repos_url": "https://api.github.com/users/octocat/repos",
+      "events_url": "https://api.github.com/users/octocat/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/octocat/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    {
+      "login": "johndoe",
+      "id": 2,
+      "avatar_url": "https://github.com/images/error/johndoe_happy.gif",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/johndoe",
+      "html_url": "https://github.com/johndoe",
+      "followers_url": "https://api.github.com/users/johndoe/followers",
+      "following_url": "https://api.github.com/users/johndoe/following{/other_user}",
+      "gists_url": "https://api.github.com/users/johndoe/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/johndoe/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/johndoe/subscriptions",
+      "organizations_url": "https://api.github.com/users/johndoe/orgs",
+      "repos_url": "https://api.github.com/users/johndoe/repos",
+      "events_url": "https://api.github.com/users/johndoe/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/johndoe/received_events",
+      "type": "User",
+      "site_admin": false
+    }
+  ],
+  "no_accounts": [],
+  "invalid_response": "",
+  "standard_params": {
+    "secrets": {
+      "GITHUB_TOKEN": "1234567890",
+      "ORGANIZATION": "ACME"
+    }
+  }
+}

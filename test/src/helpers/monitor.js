@@ -2,7 +2,8 @@
 
 const helper = require('src/helpers')().monitor;
 
-describe('[helper] Monitor', () =>
+describe('Helpers', () =>
+  describe('Monitor', () =>
   describe('getDifference()', () => {
     it('should return no difference for the same arrays for one service', () => {
       const data = [{name: 'github', accounts: ['john', 'mark', 'thomas']}];
@@ -80,4 +81,4 @@ describe('[helper] Monitor', () =>
       expect(diff[0].accounts).to.have.length(2);
       expect(diff[0].accounts).to.eql(['alex', 'chris']);
     });
-}));
+})));
