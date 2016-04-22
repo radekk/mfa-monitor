@@ -1,6 +1,6 @@
 'use strict';
 
-const config = require('json!./../../../build/config.json');
+const config = require('build/config.json');
 const db = require('src/storage/webtask');
 const sandbox = require('sandboxjs');
 const helper = require('src/helpers')({
