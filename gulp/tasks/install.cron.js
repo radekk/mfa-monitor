@@ -23,6 +23,7 @@ gulp.task('install:cron', cb => {
   exec(cmd, (err, stdout, stderr) => {
     if (err) return cb(err);
     if (stderr) return cb(new Error(stderr));
+    if (!stdout.length) return cb(new Error('Cron failed to install'));
 
     console.log(stdout);
   });
