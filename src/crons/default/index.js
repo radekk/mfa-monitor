@@ -14,9 +14,14 @@ module.exports = (ctx, cb) => {
   helper.monitor.getMonitoringResult()
     .then(services => db.getStoredData()
     .then(stored => {
+      // Accounts with disabled MFA
       helper.notifier.notify(helper.monitor.getDifference(services, stored))
         .then(() => db.storeData(services)
         .then(() => cb()));
+
+      // Accounts with state changed from "disabled" => "enabled"
+      helper.notifier.notify(helper.monitor.getDifference(stored, services), true)
+        .then(() => cb());
     })
   ).catch(err => cb(err));
 };

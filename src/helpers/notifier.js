@@ -4,7 +4,7 @@ const Promise = require('bluebird').Promise;
 const sandbox = require('sandboxjs');
 
 module.exports = (params) => ({
-  notify: (data) => {
+  notify: (data, mfaStatus) => {
     const webtasks = params.config.webtasks;
     const notifiers = webtasks.filter(wt => wt.metadata.type === 'notifier');
     if (!data.length) return Promise.resolve(false);
@@ -13,7 +13,10 @@ module.exports = (params) => ({
       Promise.each(notifiers, wt =>
         new sandbox.Webtask(params.profile, wt.token).run({
           method: 'post',
-          body: data
+          body: {
+            data: data,
+            mfaStatus: !!mfaStatus
+          }
         })
       ).then(result => resolve(result))
        .catch(err => reject(err))
