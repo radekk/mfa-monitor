@@ -19,7 +19,7 @@ module.exports = (ctx, cb) => {
         .then(() => db.storeData(services)
         .then(() => cb()));
 
-      // Accounts with state changed from "disabled" => "enabled"
+      // Accounts with MFA state changed from "disabled" => "enabled"
       helper.notifier.notify(helper.monitor.getDifference(stored, services), true)
         .then(() => cb());
     })
