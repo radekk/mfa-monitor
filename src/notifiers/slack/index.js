@@ -5,8 +5,8 @@ const assert = require('assert');
 function getMessage(service, accounts, mfaStatus) {
   return (
     mfaStatus
-    ? `Users who enabled MFA on \`${service}\` are ${accounts}`
-    : `Users without MFA on \`${service}\` are ${accounts}`
+    ? `:heart: Users who enabled MFA on \`${service}\` are: ${accounts}`
+    : `:warning: Users without MFA on \`${service}\` are: ${accounts}`
   );
 }
 
@@ -32,7 +32,6 @@ module.exports = (ctx, cb) => {
 
     slack.send({
       channel: ctx.secrets.SLACK_CHANNEL_NAME,
-      icon_emoji: (mfaStatus ? ':heart:' : ':warning:'),
       username: 'MFA Agent',
       text: message
     });
