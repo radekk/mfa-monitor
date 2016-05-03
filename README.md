@@ -10,21 +10,30 @@ Monitor your online applications without worrying about the hosting platform, bi
 
 - Node.JS (>= 5.0.0) and NPM installed
 - Webtask CLI - [https://webtask.io/cli](https://webtask.io/cli)
-- Webtask.io account (free) - [webtask.io](https://webtask.io)
+- Webtask.io account (it's free) - [webtask.io](https://webtask.io)
 
-## Installation
+## Update your current installation
+
+If you have the MFA monitor already configured (``build/config.json`` file exists) then you can update both the webtask source code and the cron job in two simple steps:
+
+```bash
+git pull --rebase
+npm run update
+```
+
+What it does is:
+
+- Update the source code of all installed webtasks (notifiers and monitors).
+- Reinstall cron job using the newest source code.
+
+## Installing for the first time
+
+The installation consists of two simple steps. The first one is the NPM dependency installation process and the second one is the MFA monitor configuration.
+
 
 ```bash
 npm install
 npm run start
-```
-
-To get the newest code and update current installation:
-
-```bash
-git fetch --all
-git pull
-npm run install
 ```
 
 ## Configuration and update
