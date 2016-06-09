@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/radekk/webtask-mfa-monitor.svg?branch=master)](https://travis-ci.org/radekk/webtask-mfa-monitor)
 
-Monitor your online applications without worrying about the hosting platform, bills, and servers. Run simple crontab task to oversee the actual state of the MFA (Multi-Factor Authentication) among different services like **Github**, **Google**, **Slack** and more.
+Monitor your online applications without worrying about the hosting platform, bills, and servers. Run simple crontab task to oversee the actual state of the MFA (Multi-Factor Authentication) among different services like **AWS** (Amazon Web Services), **Github**, **Google**, **Slack** and more.
 
 ![Slack alert](docs/images/slack.example.png)
 
@@ -18,12 +18,14 @@ If you have the MFA monitor already configured (``build/config.json`` file exist
 
 ```bash
 git pull --rebase
+npm run configure:webtasks
 npm run update
 ```
 
 What it does is:
 
 - Update the source code of all installed webtasks (notifiers and monitors).
+- Reconfigure your webtasks (old config settings are used if any exists).
 - Reinstall cron job using the newest source code.
 
 ## Installing for the first time
@@ -39,7 +41,6 @@ npm run start
 ## Configuration and update
 
 Configuration process allows modifying settings for individual components without starting from scratch. Settings are stored inside `build` directory as `config.json` file.
-
 
 Available commands are:
 
