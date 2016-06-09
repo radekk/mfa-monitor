@@ -27,6 +27,8 @@ module.exports = (ctx, cb) => {
   slack.onError = (err) => cb(err);
 
   ctx.body.data.forEach(service => {
+    if (!service.accounts.length) return;
+
     let accounts = service.accounts.map(account => `*${account}*`).join(', ');
     let message  = getMessage(service.name, accounts, mfaStatus);
 

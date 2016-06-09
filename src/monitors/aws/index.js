@@ -3,6 +3,8 @@
 const assert = require('assert');
 const AWS = require('aws-sdk');
 const maxItems = 1000;
+const usersPathPrefix = '/';
+const passwordLastUsedDateField = 'PasswordLastUsed';
 const Promise = require('bluebird').Promise;
 
 /**
@@ -30,9 +32,9 @@ module.exports = (ctx, cb) => {
   ));
 
   new Promise((resolve, reject) =>
-    iam.listUsers({MaxItems: maxItems, PathPrefix: '/'}, (err, data) => {
+    iam.listUsers({MaxItems: maxItems, PathPrefix: usersPathPrefix}, (err, data) => {
       if (err) return reject(err);
-      resolve(data.Users.filter(user => !!user['PasswordLastUsed']));
+      resolve(data.Users.filter(user => !!user[passwordLastUsedDateField]));
     })
   ).then(users =>
     Promise.all(users.map(user => user.UserName).map(getUserMFADevices)).then(data =>
