@@ -1,5 +1,6 @@
 'use strict';
 
+const cache = require('lru-cache')();
 const configPath = 'build/config.json';
 const fs = require('fs');
 const glob = require('glob');
@@ -7,12 +8,7 @@ const prompt = require('inquirer').prompt;
 const Promise = require('bluebird').Promise;
 const _ = require('lodash');
 
-const validators = {
-  isNotEmpty: value => !!value ? true : 'Value is required!',
-  atLeastOneSelected: data => data.length ? true : 'Select at least one option!'
-};
-
-module.exports = {
+const helper = {
   isConfigured: () => {
     try {
       fs.accessSync(configPath, fs.R_OK | fs.W_OK);
@@ -40,12 +36,29 @@ module.exports = {
       type: params.type,
       name: params.name,
       message: `[${wt.type} | ${wt.name}] ${params.name}:`,
-      default: params.default || null,
-      validate: validators.isNotEmpty
+      default: helper.getCurrentValue(wt.name, params.name) || params.default || null,
+      validate: helper.validators.isNotEmpty
     })), resolve)
   ),
 
-  getConfig: () => require(configPath),
+  getConfig: () => {
+    let config = cache.get('config');
+    if (config) return config;
+
+    config = require(configPath);
+    cache.set('config', config);
+
+    return config;
+  },
+
+  getCurrentValue: (wtName, paramName) => {
+    const config = helper.getConfig();
+
+    if (config && config.webtasks) {
+      let wt = _.filter(config.webtasks, wt => wt.metadata.name === wtName).pop() || [];
+      if (wt.secrets) return wt.secrets[paramName] || null;
+    }
+  },
 
   updateConfig: (name, settings) => new Promise((resolve, reject) => {
     let config = {};
@@ -62,5 +75,10 @@ module.exports = {
     });
   }),
 
-  validators: validators
+  validators: {
+    isNotEmpty: value => !!value ? true : 'Value is required!',
+    atLeastOneSelected: data => data.length ? true : 'Select at least one option!'
+  }
 };
+
+module.exports = helper;
