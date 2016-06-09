@@ -9,6 +9,11 @@
     {
       "name": "SECRET_ACCESS_KEY",
       "type": "input"
+    },
+    {
+      "name": "WEBTASK_URL",
+      "type": "input",
+      "default": "https://raw.githubusercontent.com/radekk/webtask-mfa-monitor/master/src/monitors/aws/index.js"
     }
   ],
   "type": "monitor"
