@@ -913,7 +913,14 @@
         "minimatch": {
           "version": "0.3.0",
           "from": "minimatch@https://registry.npmjs.org/minimatch/-/minimatch-0.3.0.tgz",
-          "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-0.3.0.tgz"
+          "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-0.3.0.tgz",
+          "dependencies": {
+            "lru-cache": {
+              "version": "2.7.3",
+              "from": "lru-cache@>=2.0.0 <3.0.0",
+              "resolved": "https://registry.npmjs.org/lru-cache/-/lru-cache-2.7.3.tgz"
+            }
+          }
         }
       }
     },
@@ -2173,7 +2180,14 @@
         "minimatch": {
           "version": "0.2.14",
           "from": "minimatch@https://registry.npmjs.org/minimatch/-/minimatch-0.2.14.tgz",
-          "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-0.2.14.tgz"
+          "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-0.2.14.tgz",
+          "dependencies": {
+            "lru-cache": {
+              "version": "2.7.3",
+              "from": "lru-cache@>=2.0.0 <3.0.0",
+              "resolved": "https://registry.npmjs.org/lru-cache/-/lru-cache-2.7.3.tgz"
+            }
+          }
         }
       }
     },
@@ -2845,9 +2859,9 @@
       "resolved": "https://registry.npmjs.org/lowercase-keys/-/lowercase-keys-1.0.0.tgz"
     },
     "lru-cache": {
-      "version": "2.7.3",
-      "from": "lru-cache@https://registry.npmjs.org/lru-cache/-/lru-cache-2.7.3.tgz",
-      "resolved": "https://registry.npmjs.org/lru-cache/-/lru-cache-2.7.3.tgz"
+      "version": "4.0.1",
+      "from": "lru-cache@latest",
+      "resolved": "https://registry.npmjs.org/lru-cache/-/lru-cache-4.0.1.tgz"
     },
     "map-obj": {
       "version": "1.0.1",
