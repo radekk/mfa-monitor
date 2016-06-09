@@ -1,0 +1,15 @@
+{
+  "claims": {},
+  "name": "AWS",
+  "prompt": [
+    {
+      "name": "ACCESS_KEY_ID",
+      "type": "input"
+    },
+    {
+      "name": "SECRET_ACCESS_KEY",
+      "type": "input"
+    }
+  ],
+  "type": "monitor"
+}
