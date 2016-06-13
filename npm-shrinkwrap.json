@@ -1,6 +1,6 @@
 {
   "name": "webtask-mfa-monitor",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "dependencies": {
     "acorn": {
       "version": "1.2.2",
@@ -2233,11 +2233,6 @@
       "from": "graceful-readlink@https://registry.npmjs.org/graceful-readlink/-/graceful-readlink-1.0.1.tgz",
       "resolved": "https://registry.npmjs.org/graceful-readlink/-/graceful-readlink-1.0.1.tgz"
     },
-    "growl": {
-      "version": "1.8.1",
-      "from": "growl@https://registry.npmjs.org/growl/-/growl-1.8.1.tgz",
-      "resolved": "https://registry.npmjs.org/growl/-/growl-1.8.1.tgz"
-    },
     "gulp": {
       "version": "3.9.1",
       "from": "gulp@https://registry.npmjs.org/gulp/-/gulp-3.9.1.tgz",
@@ -3752,6 +3747,11 @@
       "version": "1.0.2",
       "from": "to-fast-properties@https://registry.npmjs.org/to-fast-properties/-/to-fast-properties-1.0.2.tgz",
       "resolved": "https://registry.npmjs.org/to-fast-properties/-/to-fast-properties-1.0.2.tgz"
+    },
+    "to-iso-string": {
+      "version": "0.0.2",
+      "from": "to-iso-string@0.0.2",
+      "resolved": "https://registry.npmjs.org/to-iso-string/-/to-iso-string-0.0.2.tgz"
     },
     "tough-cookie": {
       "version": "2.2.2",

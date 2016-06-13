@@ -1,6 +1,6 @@
 {
   "name": "webtask-mfa-monitor",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Backendless security monitoring for your MFA enabled services",
   "main": "node.run.js",
   "private": true,
