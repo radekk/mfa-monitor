@@ -33,10 +33,14 @@ module.exports = (params) => ({
     return new Promise((resolve, reject) =>
       Promise.each(monitors, wt =>
         new sandbox.Webtask(params.profile, wt.token).run({})
-          .then(result => monitoring.push({
-            name: wt.metadata.name,
-            accounts: result.body
-          }))
+          .then(result => {
+            if (result.statusCode !== 200) return reject(result.error.text);
+
+            monitoring.push({
+              name: wt.metadata.name,
+              accounts: result.body
+            });
+          })
       ).then(() => resolve(monitoring))
        .catch(err => reject(err))
     );

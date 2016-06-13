@@ -23,5 +23,8 @@ module.exports = (ctx, cb) => {
       helper.notifier.notify(helper.monitor.getDifference(stored, services), true)
         .then(() => cb());
     })
-  ).catch(err => cb(err));
+  ).catch(err => {
+    console.error(err);
+    cb(err);
+  });
 };
