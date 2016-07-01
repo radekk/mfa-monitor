@@ -36,27 +36,23 @@ module.exports = (ctx, cb) => {
     new Promise((resolve, reject) =>
       iam.getLoginProfile({UserName: user.UserName}, (err, data) => {
         if (err && err.code !== missingEntityCode) return reject(err);
-        resolve(!err && !!data);
+        resolve(!err && !!data.LoginProfile);
       })
-  ));
+    ));
   // Get users who logged at least once using password
   const hasLoggedInUsingPassword = (user =>
     !!(user.hasOwnProperty(passwordLastUsedDateField) && user[passwordLastUsedDateField]));
 
-  new Promise((resolve, reject) =>
-    iam.listUsers({MaxItems: maxItems, PathPrefix: usersPathPrefix}, (err, data) => {
-      if (err) return reject(err);
-      Promise.resolve(data.Users
-        .filter(hasLoggedInUsingPassword))
-        .filter(hasLoginProfile)
-        .then(data => resolve(data))
-        .catch(err => reject(err));
-    })
-  ).then(users =>
-    Promise.resolve(users.map(user => user.UserName))
-      .map(getUserMFADevices)
-      .filter(user => !user.isMFADevice)
-      .map(user => user.userName)
-      .then(users => cb(null, users))
-  ).catch(err => cb(err));
+  iam.listUsers({MaxItems: maxItems, PathPrefix: usersPathPrefix}, (err, data) => {
+    if (err) return cb(err);
+    if (!data) return cb(new Error('API returned no data.'));
+
+    Promise.resolve(data.Users
+      .filter(hasLoggedInUsingPassword))
+      .filter(hasLoginProfile)
+      .map(user => user.UserName)
+      .then(users => Promise.map(users, getUserMFADevices).then(users =>
+        cb(null, users.filter(user => !user.isMFADevice).map(user => user.userName)))
+      ).catch(err => cb(err));
+  });
 };
