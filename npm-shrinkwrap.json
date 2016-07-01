@@ -1,6 +1,6 @@
 {
   "name": "webtask-mfa-monitor",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "dependencies": {
     "acorn": {
       "version": "1.2.2",
