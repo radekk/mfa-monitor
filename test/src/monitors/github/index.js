@@ -32,7 +32,7 @@ describe('Monitors', () => {
       };
       const spy = chai.spy(cb);
 
-      monitor(monitorParams, spy);
+      monitor(context, spy);
       chai.expect(spy).to.be.called(1);
     });
 
@@ -45,7 +45,7 @@ describe('Monitors', () => {
       };
       const spy = chai.spy(cb);
 
-      monitor(monitorParams, spy);
+      monitor(context, spy);
       chai.expect(spy).to.be.called(1);
     });
 
@@ -56,7 +56,7 @@ describe('Monitors', () => {
       };
       const spy = chai.spy(cb);
 
-      monitor(monitorParams, spy);
+      monitor(context, spy);
       chai.expect(spy).to.be.called(1);
     });
   })
