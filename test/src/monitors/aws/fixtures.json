@@ -1,0 +1,199 @@
+{
+  "context": {
+    "secrets": {
+      "ACCESS_KEY_ID": "121212313141415151",
+      "SECRET_ACCESS_KEY": "cb123/f112344/gsf234555112312555"
+    }
+  },
+  "api_list_users": {
+    "Users": [
+      {
+        "UserName": "john.doe",
+        "PasswordLastUsed": "2016-06-05T08:34:13Z",
+        "Path": "/",
+        "CreateDate": "2016-01-01T15:02:09Z",
+        "UserId": "ABC123456AB7890111222",
+        "Arn": "arn:aws:iam::111223456678:user/john.doe"
+      },
+      {
+        "UserName": "mark",
+        "PasswordLastUsed": "2016-06-05T08:34:13Z",
+        "Path": "/",
+        "CreateDate": "2016-01-02T15:08:59Z",
+        "UserId": "ABC123456AB7890111223",
+        "Arn": "arn:aws:iam::111223456679:user/mark"
+      },
+      {
+        "UserName": "michael",
+        "Path": "/",
+        "CreateDate": "2016-01-02T15:08:59Z",
+        "UserId": "ABC123456AB7890111223",
+        "Arn": "arn:aws:iam::111223456679:user/michael"
+      },
+      {
+        "UserName": "chris21",
+        "PasswordLastUsed": "2016-06-05T08:34:13Z",
+        "Path": "/",
+        "CreateDate": "2016-01-03T12:12:29Z",
+        "UserId": "ABC123456AB7890111224",
+        "Arn": "arn:aws:iam::111223456670:user/chris21"
+      }
+    ]
+  },
+  "api_list_users_ver_2": {
+    "Users": [
+      {
+        "UserName": "john.doe",
+        "PasswordLastUsed": "2016-06-05T08:34:13Z",
+        "Path": "/",
+        "CreateDate": "2016-01-01T15:02:09Z",
+        "UserId": "ABC123456AB7890111222",
+        "Arn": "arn:aws:iam::111223456678:user/john.doe"
+      },
+      {
+        "UserName": "mark",
+        "PasswordLastUsed": "2016-06-05T08:34:13Z",
+        "Path": "/",
+        "CreateDate": "2016-01-02T15:08:59Z",
+        "UserId": "ABC123456AB7890111223",
+        "Arn": "arn:aws:iam::111223456679:user/mark"
+      },
+      {
+        "UserName": "michael",
+        "PasswordLastUsed": "2016-06-05T08:34:13Z",
+        "Path": "/",
+        "CreateDate": "2016-01-02T15:08:59Z",
+        "UserId": "ABC123456AB7890111223",
+        "Arn": "arn:aws:iam::111223456679:user/michael"
+      },
+      {
+        "UserName": "chris21",
+        "PasswordLastUsed": "2016-06-05T08:34:13Z",
+        "Path": "/",
+        "CreateDate": "2016-01-03T12:12:29Z",
+        "UserId": "ABC123456AB7890111224",
+        "Arn": "arn:aws:iam::111223456670:user/chris21"
+      }
+    ]
+  },
+  "api_list_mfa_devices": {
+    "john.doe": {
+      "MFADevices": [
+        {
+          "UserName": "john.doe",
+          "SerialNumber": "arn:aws:iam::111223456678:mfa/john.doe",
+          "EnableDate": "2016-04-08T20:22:36Z"
+        }
+      ]
+    },
+    "mark": {
+      "MFADevices": []
+    },
+    "michael": {
+      "MFADevices": []
+    },
+    "chris21": {
+      "MFADevices": [
+        {
+          "UserName": "chris21",
+          "SerialNumber": "arn:aws:iam::111223456670:mfa/chris21",
+          "EnableDate": "2016-05-18T20:32:31Z"
+        }
+      ]
+    }
+  },
+  "api_list_mfa_devices_all_enabled": {
+    "john.doe": {
+      "MFADevices": [
+        {
+          "UserName": "john.doe",
+          "SerialNumber": "arn:aws:iam::111223456678:mfa/john.doe",
+          "EnableDate": "2016-04-08T20:22:36Z"
+        }
+      ]
+    },
+    "mark": {
+      "MFADevices": [
+        {
+          "UserName": "john.doe",
+          "SerialNumber": "arn:aws:iam::111223456678:mfa/mark",
+          "EnableDate": "2016-04-08T20:22:36Z"
+        }
+      ]
+    },
+    "michael": {
+      "MFADevices": [
+        {
+          "UserName": "john.doe",
+          "SerialNumber": "arn:aws:iam::111223456678:mfa/michael",
+          "EnableDate": "2016-04-08T20:22:36Z"
+        }
+      ]
+    },
+    "chris21": {
+      "MFADevices": [
+        {
+          "UserName": "chris21",
+          "SerialNumber": "arn:aws:iam::111223456670:mfa/chris21",
+          "EnableDate": "2016-05-18T20:32:31Z"
+        }
+      ]
+    }
+  },
+  "api_get_login_profile": {
+    "john.doe": {
+      "LoginProfile": {
+        "UserName": "john.doe",
+        "CreateDate": "2016-01-01T15:11:37Z",
+        "PasswordResetRequired": false
+      }
+    },
+    "mark": {
+      "LoginProfile": {
+        "UserName": "mark",
+        "CreateDate": "2016-01-01T15:11:37Z",
+        "PasswordResetRequired": false
+      }
+    },
+    "michael": {
+      "LoginProfile": {
+        "UserName": "michael",
+        "CreateDate": "2016-01-01T15:11:37Z",
+        "PasswordResetRequired": false
+      }
+    },
+    "chris21": {
+      "LoginProfile": {
+        "UserName": "chris21",
+        "CreateDate": "2016-01-01T15:11:37Z",
+        "PasswordResetRequired": false
+      }
+    }
+  },
+  "api_get_login_profile_ver_2": {
+    "john.doe": {
+      "LoginProfile": {
+        "UserName": "john.doe",
+        "CreateDate": "2016-01-01T15:11:37Z",
+        "PasswordResetRequired": false
+      }
+    },
+    "mark": {
+    },
+    "michael": {
+      "LoginProfile": {
+        "UserName": "michael",
+        "CreateDate": "2016-01-01T15:11:37Z",
+        "PasswordResetRequired": false
+      }
+    },
+    "chris21": {
+      "LoginProfile": {
+        "UserName": "chris21",
+        "CreateDate": "2016-01-01T15:11:37Z",
+        "PasswordResetRequired": false
+      }
+    }
+  }
+}
+
