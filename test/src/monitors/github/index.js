@@ -3,7 +3,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 const fixtures = require('./fixtures.json');
-const proxy = require('proxyquire');
+const proxy = require('proxyquire').noCallThru();
 const spies = require('chai-spies');
 
 // Arrow function doesn't have a prototype nor constructor, using function.
