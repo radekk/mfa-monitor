@@ -34,7 +34,7 @@ module.exports = (params) => ({
       Promise.each(monitors, wt =>
         new sandbox.Webtask(params.profile, wt.token).run({})
           .then(result => {
-            if (result.statusCode !== 200) return reject(result.error.text);
+            if (result.error) return reject(result.error.text);
 
             monitoring.push({
               name: wt.metadata.name,
