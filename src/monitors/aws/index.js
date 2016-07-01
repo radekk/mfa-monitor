@@ -6,6 +6,7 @@ const maxItems = 1000;
 const usersPathPrefix = '/';
 const passwordLastUsedDateField = 'PasswordLastUsed';
 const Promise = require('bluebird').Promise;
+const missingEntityCode = 'NoSuchEntity';
 
 /**
  * @param {secret} ACCESS_KEY_ID     - Amazon access key id
@@ -27,17 +28,35 @@ module.exports = (ctx, cb) => {
     new Promise((resolve, reject) =>
       iam.listMFADevices({MaxItems: maxItems, UserName: userName}, (err, devices) => {
         if (err) return reject(err);
-        resolve({user: userName, isMFADevice: !!devices.MFADevices.length});
+        resolve({userName: userName, isMFADevice: !!devices.MFADevices.length});
       })
   ));
+  // If there is not login profile then skip this user
+  const hasLoginProfile = (user =>
+    new Promise((resolve, reject) =>
+      iam.getLoginProfile({UserName: user.UserName}, (err, data) => {
+        if (err && err.code !== missingEntityCode) return reject(err);
+        resolve(!err && !!data);
+      })
+  ));
+  // Get users who logged at least once using password
+  const hasLoggedInUsingPassword = (user =>
+    !!(user.hasOwnProperty(passwordLastUsedDateField) && user[passwordLastUsedDateField]));
 
   new Promise((resolve, reject) =>
     iam.listUsers({MaxItems: maxItems, PathPrefix: usersPathPrefix}, (err, data) => {
       if (err) return reject(err);
-      resolve(data.Users.filter(user => !!user[passwordLastUsedDateField]));
+      Promise.resolve(data.Users
+        .filter(hasLoggedInUsingPassword))
+        .filter(hasLoginProfile)
+        .then(data => resolve(data))
+        .catch(err => reject(err));
     })
   ).then(users =>
-    Promise.all(users.map(user => user.UserName).map(getUserMFADevices)).then(data =>
-      cb(null, data.filter(user => !user.isMFADevice).map(row => row.user)))
+    Promise.resolve(users.map(user => user.UserName))
+      .map(getUserMFADevices)
+      .filter(user => !user.isMFADevice)
+      .map(user => user.userName)
+      .then(users => cb(null, users))
   ).catch(err => cb(err));
 };
