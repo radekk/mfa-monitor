@@ -41,7 +41,7 @@
   ],
   "no_accounts": [],
   "invalid_response": "",
-  "standard_params": {
+  "context": {
     "secrets": {
       "GITHUB_TOKEN": "1234567890",
       "ORGANIZATION": "ACME"

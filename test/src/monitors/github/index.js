@@ -10,7 +10,7 @@ const spies = require('chai-spies');
 describe('Monitors', () => {
   before(() => chai.use(spies));
 
-  const monitorParams = fixtures.standard_params;
+  const context = fixtures.context;
   const getMonitorProxy = (resp) => proxy('src/monitors/github', {
     github: function() {
       return {
