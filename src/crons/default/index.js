@@ -24,7 +24,6 @@ module.exports = (ctx, cb) => {
         .then(() => cb());
     })
   ).catch(err => {
-    console.error(err);
     cb(err);
   });
 };
