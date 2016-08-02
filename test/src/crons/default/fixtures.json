@@ -1,0 +1,112 @@
+{
+  "allUsersWithoutMFANotInDb": {
+    "db": [],
+    "services": [
+      {
+        "name": "aws",
+        "accounts": ["alice", "bob"]
+      },
+      {
+        "name": "github",
+        "accounts": ["admin"]
+      }
+    ],
+    "diffMFAEnabled": [],
+    "diffMFADisabled": [
+      {
+        "name": "aws",
+        "accounts": ["alice", "bob"]
+      },
+      {
+        "name": "github",
+        "accounts": ["admin"]
+      }
+    ]
+  },
+  "allUsersWithoutMFAInDb": {
+    "db": [
+      {
+        "name": "aws",
+        "accounts": ["alice", "bob"]
+      },
+      {
+        "name": "github",
+        "accounts": ["admin"]
+      }
+    ],
+    "services": [
+      {
+        "name": "aws",
+        "accounts": ["alice", "bob"]
+      },
+      {
+        "name": "github",
+        "accounts": ["admin"]
+      }
+    ],
+    "diffMFAEnabled": [],
+    "diffMFADisabled": []
+  },
+  "newUsersWithoutMFA_DbNotEmpty": {
+    "db": [
+      {
+        "name": "aws",
+        "accounts": ["alice", "bob"]
+      },
+      {
+        "name": "github",
+        "accounts": ["admin"]
+      }
+    ],
+    "services": [
+      {
+        "name": "aws",
+        "accounts": ["alice", "bob", "john"]
+      },
+      {
+        "name": "github",
+        "accounts": ["admin", "root"]
+      }
+    ],
+    "diffMFAEnabled": [],
+    "diffMFADisabled": [
+      {
+        "name": "aws",
+        "accounts": ["john"]
+      },
+      {
+        "name": "github",
+        "accounts": ["root"]
+      }
+    ]
+  },
+  "newUsersWithMFA_DbNotEmpty": {
+    "db": [
+      {
+        "name": "aws",
+        "accounts": ["alice", "bob"]
+      },
+      {
+        "name": "github",
+        "accounts": ["admin"]
+      }
+    ],
+    "services": [
+      {
+        "name": "aws",
+        "accounts": ["alice"]
+      },
+      {
+        "name": "github",
+        "accounts": ["admin"]
+      }
+    ],
+    "diffMFAEnabled": [
+      {
+        "name": "aws",
+        "accounts": ["bob"]
+      }
+    ],
+    "diffMFADisabled": []
+  }
+}
