@@ -5,6 +5,9 @@ const Promise = require('bluebird').Promise;
 const sandbox = require('sandboxjs');
 
 module.exports = (params) => ({
+  MFA_STATE_ENABLED: 1,
+  MFA_STATE_DISABLED: 0,
+
   getDifference: (newest, stored) => {
     let result = [];
     stored = _.isEmpty(stored) ? [] : stored;

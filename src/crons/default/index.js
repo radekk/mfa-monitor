@@ -14,9 +14,9 @@ module.exports = (ctx, cb) => {
   helper.monitor.getMonitoringResult()
     .then(services => db.getStoredData()
     .then(stored =>
-      helper.notifier.notify(helper.monitor.getDifference(services, stored))
+      helper.notifier.notify(helper.monitor.getDifference(services, stored), helper.monitor.MFA_STATE_DISABLED)
         .then(() => db.storeData(services)
-        .then(() => helper.notifier.notify(helper.monitor.getDifference(stored, services), true)
+        .then(() => helper.notifier.notify(helper.monitor.getDifference(stored, services), helper.monitor.MFA_STATE_ENABLED)
           .then(() => cb()))
   ))).catch(err => cb(err));
 };
