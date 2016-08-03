@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "test": "NODE_PATH=. mocha",
+    "coverage": "NODE_PATH=. node_modules/.bin/istanbul cover node_modules/mocha/bin/_mocha -- -R spec && open coverage/lcov-report/index.html",
     "start": "NODE_PATH=. ./node_modules/.bin/gulp start",
     "build": "NODE_PATH=. ./node_modules/.bin/gulp build",
     "build:webtasks": "NODE_PATH=. ./node_modules/.bin/gulp build:webtasks",
@@ -50,6 +51,7 @@
     "chai-spies": "^0.7.1",
     "expect.js": "^0.3.1",
     "github": "^0.2.4",
+    "istanbul": "^0.4.4",
     "jshint": "^2.9.1",
     "mocha": "^2.4.5",
     "proxyquire": "^1.7.4",
