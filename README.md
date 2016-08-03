@@ -1,6 +1,6 @@
 # Backendless MFA monitoring
 
-[![Build Status](https://travis-ci.org/radekk/webtask-mfa-monitor.svg?branch=master)](https://travis-ci.org/radekk/webtask-mfa-monitor)
+[![Build Status](https://travis-ci.org/radekk/mfa-monitor.svg?branch=master)](https://travis-ci.org/radekk/mfa-monitor)
 
 Monitor your online applications without worrying about the hosting platform, bills, and servers. Run simple crontab task to oversee the actual state of the MFA (Multi-Factor Authentication) among different services like **AWS** (Amazon Web Services), **Github**, **Google**, **Slack** and more.
 
@@ -55,8 +55,7 @@ npm run configure:cron - configure only cron settings
 npm run configure:sandbox - configure sandbox settings
 npm run configure:webtasks - configure webtasks settings
 
-npm run install - install all
-npm run install:cron - install scheduled webtask
+npm run update - update remote notifiers, monitors and cron worker
 ```
 
 ![Configuration](docs/images/configuration.png)
