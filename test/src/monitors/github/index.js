@@ -11,12 +11,12 @@ describe('Monitors', () => {
   before(() => chai.use(spies));
 
   const context = fixtures.context;
-  const getMonitorProxy = (resp) => proxy('src/monitors/github', {
+  const getMonitorProxy = (resp, err) => proxy('src/monitors/github', {
     github: function() {
       return {
         authenticate: () => {},
         orgs: {
-          getMembers: (config, cb) => cb(null, resp)
+          getMembers: (config, cb) => cb(err || null, resp)
         }
       };
     }
@@ -49,10 +49,23 @@ describe('Monitors', () => {
       chai.expect(spy).to.be.called(1);
     });
 
-    it('should throw an error if empty response from API was received', () => {
+    it('should return an error if empty response from API was received', () => {
       const monitor = getMonitorProxy(fixtures.invalid_response);
       const cb = (err, res) => {
         expect(err).to.be.an('error');
+      };
+      const spy = chai.spy(cb);
+
+      monitor(context, spy);
+      chai.expect(spy).to.be.called(1);
+    });
+
+    it('should return an error when listing organization members failed', () => {
+      const errorMessage = 'Listing users failed';
+      const monitor = getMonitorProxy([], new Error(errorMessage));
+      const cb = (err, res) => {
+        expect(err).to.be.an('error');
+        expect(err.message).to.be.eql(errorMessage);
       };
       const spy = chai.spy(cb);
 
