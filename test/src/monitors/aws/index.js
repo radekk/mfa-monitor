@@ -20,9 +20,17 @@ describe('Monitors', () => {
       IAM: function() {
         let extendedFixtures = _.extend(_.clone(fixtures), data);
         return {
-          listUsers: (data, cb) => cb(null, extendedFixtures.api_list_users),
-          listMFADevices: (data, cb) => cb(null, extendedFixtures.api_list_mfa_devices[data.UserName]),
-          getLoginProfile: (data, cb) => cb(null, extendedFixtures.api_get_login_profile[data.UserName])
+          listUsers: (data, cb) => cb(
+            extendedFixtures.api_list_users_cb || null,
+            extendedFixtures.api_list_users),
+
+          listMFADevices: (data, cb) => cb(
+            extendedFixtures.api_list_mfa_devices_cb || null,
+            extendedFixtures.api_list_mfa_devices[data.UserName]),
+
+          getLoginProfile: (data, cb) => cb(
+            extendedFixtures.api_get_login_profile_cb || null,
+            extendedFixtures.api_get_login_profile[data.UserName])
         };
       }
     }
@@ -88,6 +96,48 @@ describe('Monitors', () => {
         expect(err).to.be.null;
         expect(res).to.be.an('array');
         expect(res).to.be.eql(['mark']);
+        done();
+      };
+      const spy = chai.spy(cb);
+      monitor(context, spy);
+    });
+
+    it('should fail when listing MFA devices returned an error', (done) => {
+      const errorMessage = 'Failed to get MFA devices';
+      const monitor = getMonitorProxy({
+        api_list_mfa_devices_cb: new Error(errorMessage)
+      });
+      const cb = (err, res) => {
+        expect(err).to.be.an('error');
+        expect(err.message).to.be.eql(errorMessage);
+        done();
+      };
+      const spy = chai.spy(cb);
+      monitor(context, spy);
+    });
+
+    it('should fail when fetching the login profile returned an error', (done) => {
+      const errorMessage = 'Failed to fetch login profile';
+      const monitor = getMonitorProxy({
+        api_get_login_profile_cb: new Error(errorMessage)
+      });
+      const cb = (err, res) => {
+        expect(err).to.be.an('error');
+        expect(err.message).to.be.eql(errorMessage);
+        done();
+      };
+      const spy = chai.spy(cb);
+      monitor(context, spy);
+    });
+
+    it('should fail when action that list users returned an error', (done) => {
+      const errorMessage = 'Failed to list users';
+      const monitor = getMonitorProxy({
+        api_list_users_cb: new Error(errorMessage)
+      });
+      const cb = (err, res) => {
+        expect(err).to.be.an('error');
+        expect(err.message).to.be.eql(errorMessage);
         done();
       };
       const spy = chai.spy(cb);
