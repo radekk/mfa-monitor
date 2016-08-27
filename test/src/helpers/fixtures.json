@@ -1,0 +1,105 @@
+{
+  "config_empty_wt_list": {
+    "profile": {},
+    "config": {
+      "webtasks": []
+    }
+  },
+  "config_single_wt": {
+    "profile": {},
+    "config": {
+      "webtasks": [{
+        "token": "abcd1234",
+        "metadata": {
+          "name": "example1",
+          "type": "monitor"
+        },
+        "accounts": ["bob", "alice"]
+      }]
+    }
+  },
+  "config_multiple_wt": {
+    "profile": {},
+    "config": {
+      "webtasks": [{
+        "token": "abcd12345",
+        "metadata": {
+          "name": "example2",
+          "type": "monitor"
+        },
+        "accounts": ["thomas", "mike"]
+      }, {
+        "token": "abcd123456",
+        "metadata": {
+          "name": "example3",
+          "type": "monitor"
+        },
+        "accounts": ["kevin", "jerry", "chris"]
+      }]
+    }
+  },
+  "config_multiple_mixed_wt": {
+    "profile": {},
+    "config": {
+      "webtasks": [{
+        "token": "abcd1234567",
+        "metadata": {
+          "name": "example4",
+          "type": "monitor"
+        },
+        "accounts": ["thomas", "mike"]
+      }, {
+        "token": "abcd12345678",
+        "metadata": {
+          "name": "example5",
+          "type": "notifier"
+        },
+        "accounts": ["kevin", "jerry", "chris"]
+      }, {
+        "token": "abcd123456789",
+        "metadata": {
+          "name": "example6",
+          "type": "monitor"
+        },
+        "accounts": ["kevin", "jerry", "chris"]
+      }]
+    }
+  },
+  "notifier_valid_data": {
+    "execution_result": [{
+      "token": "abcd12345678",
+      "metadata": {
+        "name": "example5",
+        "type": "notifier"
+      },
+      "accounts": ["kevin", "jerry", "chris"]
+    }],
+    "module_params": {
+      "profile": {},
+      "config": {
+        "webtasks": [{
+          "token": "abcd1234567",
+          "metadata": {
+            "name": "example4",
+            "type": "monitor"
+          },
+          "accounts": ["thomas", "mike"]
+        }, {
+          "token": "abcd12345678",
+          "metadata": {
+            "name": "example5",
+            "type": "notifier"
+          },
+          "accounts": ["kevin", "jerry", "chris"]
+        }, {
+          "token": "abcd123456789",
+          "metadata": {
+            "name": "example6",
+            "type": "monitor"
+          },
+          "accounts": ["kevin", "jerry", "chris"]
+        }]
+      }
+    }
+  }
+}
