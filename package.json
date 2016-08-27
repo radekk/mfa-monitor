@@ -7,6 +7,7 @@
   "scripts": {
     "test": "NODE_PATH=. mocha",
     "coverage": "NODE_PATH=. node_modules/.bin/istanbul cover node_modules/mocha/bin/_mocha -- -R spec && open coverage/lcov-report/index.html",
+    "coverage:push": "NODE_PATH=. node_modules/.bin/istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
     "start": "NODE_PATH=. ./node_modules/.bin/gulp start",
     "build": "NODE_PATH=. ./node_modules/.bin/gulp build",
     "build:webtasks": "NODE_PATH=. ./node_modules/.bin/gulp build:webtasks",
@@ -49,11 +50,13 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-spies": "^0.7.1",
+    "coveralls": "^2.11.12",
     "expect.js": "^0.3.1",
     "github": "^0.2.4",
     "istanbul": "^0.4.4",
     "jshint": "^2.9.1",
     "mocha": "^2.4.5",
+    "mocha-lcov-reporter": "^1.2.0",
     "proxyquire": "^1.7.4",
     "slack-notify": "~0.1.6"
   }
