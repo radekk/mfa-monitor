@@ -37,7 +37,7 @@ describe('Helpers', () => {
       });
     });
 
-    it('should resolve Promise successfully when Webtask (notifier) was executed without an error', (done) => {
+    it('should resolve Promise when Webtask (notifier) was executed successfully', (done) => {
       const notifier = getNotifierProxy(fixtures.notifier_valid_data.module_params).notify;
 
       notifier(['']).then((data) => {

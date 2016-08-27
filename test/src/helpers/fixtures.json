@@ -101,5 +101,18 @@
         }]
       }
     }
-  }
+  },
+  "monitor_webtask_result": {
+    "body": ["bob", "alice"]
+  },
+  "monitor_webtask_promise_result": [
+    {
+      "name": "example4",
+      "accounts": ["bob", "alice"]
+    },
+    {
+      "name": "example6",
+      "accounts": ["bob", "alice"]
+    }
+  ]
 }
