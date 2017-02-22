@@ -1,6 +1,5 @@
 'use strict';
 
-const assert = require('assert');
 const gulp = require('gulp');
 const helper = require('gulp/helper');
 const sequence = require('run-sequence');
